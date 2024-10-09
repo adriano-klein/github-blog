@@ -4,7 +4,6 @@ export const ProfileContainer = styled.div`
   max-width: 54rem;
   background-color: ${(props) => props.theme["base-profile"]};
   border-radius: 10px;
-  margin: -5rem;
   padding: 2rem;
 `;
 
@@ -48,7 +47,8 @@ export const ProfileContentContainer = styled.div`
 export const Title = styled.section`
   display: flex;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  align-items: flex-end;
 
   a {
     color: ${(props) => props.theme["brand-blue"]};
@@ -56,7 +56,11 @@ export const Title = styled.section`
     margin-right: 0.5rem;
   }
 
-  svg {
-    color: ${(props) => props.theme["brand-blue"]};
+  span {
+    display: flex;
+    align-items: flex-end !important;
+    svg {
+      color: ${(props) => props.theme["brand-blue"]};
+    }
   }
 `;
