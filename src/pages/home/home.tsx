@@ -1,13 +1,20 @@
+import { useEffect, useState } from "react";
 import { CardPost } from "../../components/CardPost";
-import { Header } from "../../components/header";
 import { InputSearch } from "../../components/inputSearch";
 import { Profile } from "../../components/profile";
 import { HomeContainer, ProfileContainer, CardContainer } from "./styles";
+import { api } from "../../libs/axios";
 
 export function Home() {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    api.get("https://api.github.com/users/adriano-klein").then((response) => {
+      setPosts(response.data);
+    });
+  }, []);
+
   return (
     <>
-      <Header />
       <HomeContainer>
         <ProfileContainer>
           <Profile />
