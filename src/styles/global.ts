@@ -20,4 +20,10 @@ export const GlobalStyle = createGlobalStyle`
       font: 400 1rem 'Nunito', sans-serif ;
       color: ${(props) => props.theme["base-text"]};
     }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
 `;

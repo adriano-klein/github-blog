@@ -14,6 +14,7 @@ export const ProfileContentContainer = styled.div`
     width: 12rem;
     height: 12rem;
     margin-right: 2rem;
+    border-radius: 8px;
   }
 
   h3 {

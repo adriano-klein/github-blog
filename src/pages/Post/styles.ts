@@ -43,7 +43,8 @@ export const PostTitle = styled.div`
 export const PostTitleFooter = styled.div`
   display: flex;
   justify-content: space-between;
-  max-width: 50%;
+  max-width: fit-content;
+  gap: 1rem;
 `;
 
 export const PostContentContainer = styled.article`

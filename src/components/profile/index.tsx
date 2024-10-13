@@ -1,18 +1,21 @@
+import { useContext } from "react";
 import { ProfileContainer, ProfileContentContainer, Title } from "./styles";
 import { ArrowSquareOut, Buildings, GithubLogo, Users } from "phosphor-react";
-import avatar from "../../assets/avatar.png";
+import { PostContext } from "../../contexts/postContext";
 
 export function Profile() {
+  const { profile } = useContext(PostContext);
   return (
     <ProfileContainer>
       <ProfileContentContainer>
-        <img src={avatar} />
+        <img src={profile.avatar_url} />
         <span>
           <Title>
-            <h3>Adriano Klein</h3>
+            <h3> {profile.name} </h3>
             <span>
-              <a href="#">GITHUB</a>
-              <ArrowSquareOut />
+              <a href="" target="_blank">
+                <ArrowSquareOut />
+              </a>
             </span>
           </Title>
           <p>
@@ -24,15 +27,15 @@ export function Profile() {
           <section>
             <span>
               <GithubLogo />
-              Github
+              {profile.login}
             </span>
             <span>
               <Buildings />
-              Company
+              {profile.company}
             </span>
             <span>
               <Users />
-              Follows
+              {`${profile.followers} seguidores`}
             </span>
           </section>
         </span>

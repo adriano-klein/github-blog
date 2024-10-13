@@ -8,6 +8,7 @@ export const CardPostContainer = styled.article`
 
   div {
     display: flex;
+    justify-content: space-between;
     margin-bottom: 2rem;
   }
 `;

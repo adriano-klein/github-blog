@@ -1,17 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { CardPost } from "../../components/CardPost";
 import { InputSearch } from "../../components/inputSearch";
 import { Profile } from "../../components/profile";
 import { HomeContainer, ProfileContainer, CardContainer } from "./styles";
-import { api } from "../../libs/axios";
+import { PostContext } from "../../contexts/postContext";
+import { Link } from "react-router-dom";
 
 export function Home() {
-  const [posts, setPosts] = useState([]);
-  useEffect(() => {
-    api.get("https://api.github.com/users/adriano-klein").then((response) => {
-      setPosts(response.data);
-    });
-  }, []);
+  const { posts } = useContext(PostContext);
 
   return (
     <>
@@ -21,10 +17,13 @@ export function Home() {
           <InputSearch />
         </ProfileContainer>
         <CardContainer>
-          <CardPost />
-          <CardPost />
-          <CardPost />
-          <CardPost />
+          {posts.map((post) => {
+            return (
+              <Link to={`/post/${post.number}`}>
+                <CardPost key={post.id} title={post.title} body={post.body} />
+              </Link>
+            );
+          })}
         </CardContainer>
       </HomeContainer>
     </>
