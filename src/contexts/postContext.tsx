@@ -15,6 +15,7 @@ interface profileProps {
 interface PostContextData {
   profile: profileProps;
   posts: Array<any>;
+  handleSearch: (query: string) => Promise<void>;
 }
 
 interface PostProviderProps {
@@ -39,8 +40,23 @@ export function PostcontextProvider({ children }: PostProviderProps) {
     });
   }, []);
 
+  const handleSearch = async (query: string) => {
+    const response = await api.get(
+      `/search/issues?q=${query}+%20repo:adriano-klein/github-blog`
+    );
+    const filtered = response.data.items.map((item: any) => {
+      return {
+        id: item.id,
+        title: item.title,
+        body: item.body,
+        number: item.number,
+      };
+    });
+    setPosts(filtered);
+  };
+
   return (
-    <PostContext.Provider value={{ profile, posts }}>
+    <PostContext.Provider value={{ profile, posts, handleSearch }}>
       {children}
     </PostContext.Provider>
   );

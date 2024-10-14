@@ -1,10 +1,27 @@
 import { useContext } from "react";
 import { InputSearchContainer, Form } from "./styles";
 import { PostContext } from "../../contexts/postContext";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-export function InputSearch() {
+const inputSearchSchema = z.object({
+  query: z.string(),
+  onSearch: z.function(),
+});
+
+type inputSearchInput = z.infer<typeof inputSearchSchema>;
+
+export function InputSearch({ onSearch }: inputSearchInput) {
   const { posts } = useContext(PostContext);
   const postCount = posts.length;
+  const { register, handleSubmit } = useForm<inputSearchInput>();
+
+  function handleSearchInput(data: inputSearchInput) {
+    resolver: zodResolver(inputSearchSchema);
+    onSearch(data.query);
+  }
+
   return (
     <InputSearchContainer>
       <div>
@@ -15,8 +32,12 @@ export function InputSearch() {
             : `${postCount} publicações`}
         </p>
       </div>
-      <Form action="">
-        <input type="text" placeholder="Buscar conteúdo" />
+      <Form onSubmit={handleSubmit(handleSearchInput)}>
+        <input
+          type="text"
+          placeholder="Buscar conteúdo"
+          {...register("query")}
+        />
       </Form>
     </InputSearchContainer>
   );

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { CardPost } from "../../components/CardPost";
 import { InputSearch } from "../../components/inputSearch";
 import { Profile } from "../../components/profile";
@@ -7,14 +7,13 @@ import { PostContext } from "../../contexts/postContext";
 import { Link } from "react-router-dom";
 
 export function Home() {
-  const { posts } = useContext(PostContext);
-
+  const { posts, handleSearch } = useContext(PostContext);
   return (
     <>
       <HomeContainer>
         <ProfileContainer>
           <Profile />
-          <InputSearch />
+          <InputSearch onSearch={handleSearch} />
         </ProfileContainer>
         <CardContainer>
           {posts.map((post) => {
