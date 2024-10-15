@@ -1,4 +1,5 @@
 import { CardPostContainer } from "./styles";
+import ReactMarkdown from "react-markdown";
 
 interface CardPostProps {
   title: string;
@@ -13,7 +14,7 @@ export function CardPost({ title, body }: CardPostProps) {
         <p>Há um dia</p>
       </div>
       <section>
-        <p>{body}</p>
+        <ReactMarkdown>{body}</ReactMarkdown>
       </section>
     </CardPostContainer>
   );

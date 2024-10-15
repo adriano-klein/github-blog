@@ -4,11 +4,11 @@ export const ProfileContainer = styled.div`
   max-width: 54rem;
   background-color: ${(props) => props.theme["base-profile"]};
   border-radius: 10px;
-  padding: 2rem;
 `;
 
 export const ProfileContentContainer = styled.div`
   display: flex;
+  padding: 2rem;
 
   img {
     width: 12rem;

@@ -13,7 +13,7 @@ export function Profile() {
           <Title>
             <h3> {profile.name} </h3>
             <span>
-              <a href="" target="_blank">
+              <a href={profile.html_url} target="_blank">
                 <ArrowSquareOut />
               </a>
             </span>

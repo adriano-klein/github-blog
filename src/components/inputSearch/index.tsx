@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 const inputSearchSchema = z.object({
   query: z.string(),
-  onSearch: z.function(),
+  onSearch: z.function().args(z.string()).returns(z.promise(z.void())),
 });
 
 type inputSearchInput = z.infer<typeof inputSearchSchema>;

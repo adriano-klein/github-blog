@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { CardPost } from "../../components/CardPost";
 import { InputSearch } from "../../components/inputSearch";
 import { Profile } from "../../components/profile";
@@ -13,13 +13,13 @@ export function Home() {
       <HomeContainer>
         <ProfileContainer>
           <Profile />
-          <InputSearch onSearch={handleSearch} />
+          <InputSearch onSearch={handleSearch} query={""} />
         </ProfileContainer>
         <CardContainer>
           {posts.map((post) => {
             return (
               <Link to={`/post/${post.number}`}>
-                <CardPost key={post.id} title={post.title} body={post.body} />
+                <CardPost title={post.title} body={post.body} key={post.id} />
               </Link>
             );
           })}

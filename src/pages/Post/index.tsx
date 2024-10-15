@@ -11,6 +11,7 @@ import { useContext } from "react";
 import { PostContext } from "../../contexts/postContext";
 import { formatDistanceToNow } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import ReactMarkdown from "react-markdown";
 
 interface PostProps {
   id: string;
@@ -30,14 +31,16 @@ export function Post() {
       <PostTitleContainer>
         <PostTitle>
           <span>
-            <ArrowLeft size={24} />
-            <Link to={"/"}>Voltar</Link>
+            <Link to={"/"}>
+              <ArrowLeft size={24} />
+              Voltar
+            </Link>
           </span>
           <span>
-            <GithubLogo size={24} />
-            <a href={post.html_url} target="_blank">
+            <Link to={post.html_url} target="_blank">
+              <GithubLogo size={24} />
               Ver no Github
-            </a>
+            </Link>
           </span>
         </PostTitle>
         <h1> {post.title} </h1>
@@ -55,11 +58,15 @@ export function Post() {
           </span>
           <span>
             <Chat size={24} />
-            {`${post.comments} comentários`}
+            {post.comments <= 1
+              ? `${post.comments} comentário`
+              : `${post.comments} comentários`}
           </span>
         </PostTitleFooter>
       </PostTitleContainer>
-      <PostContentContainer>{post.body}</PostContentContainer>
+      <PostContentContainer>
+        <ReactMarkdown>{post.body}</ReactMarkdown>
+      </PostContentContainer>
     </PostContainer>
   );
 }

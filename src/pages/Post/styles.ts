@@ -17,7 +17,8 @@ export const PostTitleContainer = styled.div`
   position: relative;
   z-index: 10;
 
-  span {
+  span,
+  a {
     display: flex;
     align-items: center;
     color: ${(props) => props.theme["base-span"]};
